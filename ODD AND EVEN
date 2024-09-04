@@ -1,0 +1,8 @@
+def sortArrayByParity(nums):
+    even = [num for num in nums if num % 2 == 0]
+    odd = [num for num in nums if num % 2 != 0]
+    return even + odd
+
+# Example usage:
+nums = [3, 1, 2, 4]
+print(sortArrayByParity(nums))  # Output: [2, 4, 3, 1]
