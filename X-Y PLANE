@@ -1,0 +1,23 @@
+def kClosest(points, k):
+    return sorted(points, key=lambda x: x[0]**2 + x[1]**2)[:k]
+
+# Example usage:
+points = [[1, 3], [-2, 2], [5, -1], [4, 4], [0, 0]]
+k = 3
+print(kClosest(points, k))  # Output: [[0, 0], [1, 3], [-2, 2]]
+
+
+This solution works by sorting the points based on their Euclidean distance from the origin (calculated as x**2 + y**2) and then returning the first k points.
+
+Alternatively, you can use a heap to solve this problem in O(n log k) time complexity:
+
+
+import heapq
+
+def kClosest(points, k):
+    return heapq.nsmallest(k, points, key=lambda x: x[0]**2 + x[1]**2)
+
+# Example usage:
+points = [[1, 3], [-2, 2], [5, -1], [4, 4], [0, 0]]
+k = 3
+print(kClosest(points, k))  # Output: [[0, 0], [1, 3], [-2, 2]]
