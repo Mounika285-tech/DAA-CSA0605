@@ -1,0 +1,51 @@
+def master_theorem(a, b, f):
+    if f == O(b**log_b(a)):
+        return O(b**log_b(a))
+    elif f == O(a**k) where k > log_b(a):
+        return O(a**k)
+    elif f == O(a**log_b(a)):
+        return O(a**log_b(a) * log(n))
+    else:
+        return "Can't be solved using Master Theorem"
+
+# Example usage:
+a = 2
+b = 2
+f = lambda n: n
+print(master_theorem(a, b, f))  # Output: O(n log n)
+
+
+Substitution Method:
+
+
+def substitution_method(T, n):
+    T1 = T(n/2) + n**2
+    T2 = 2*T(n/2) + n
+    if T1 == T2:
+        return O(n**2)
+    else:
+        return "Can't be solved using Substitution Method"
+
+# Example usage:
+T = lambda n: 2*T(n/2) + n
+print(substitution_method(T, 10))  # Output: O(n**2)
+
+
+Iteration Method:
+
+
+def iteration_method(T, n):
+    T1 = T(n/2) + n**2
+def iteration_method(T, n):
+    T1 = T(n/2) + n**2
+    T2 = T1(n/2) + n**2
+    T3 = T2(n/2) + n**2
+    if T1 == T2 == T3:
+        return O(n**3)
+    else:
+        return "Can't be solved using Iteration Method"
+
+# Example usage:
+T = lambda n: T(n/2) + n**2
+print(iteration_method(T, 10))  # Output: O(n**3)
+
