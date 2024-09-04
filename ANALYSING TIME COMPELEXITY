@@ -1,0 +1,81 @@
+import time
+import random
+import matplotlib.pyplot as plt
+
+# Example 1: O(1) - Constant time complexity
+def access_element(arr, index):
+    return arr[index]
+
+# Example 2: O(n) - Linear time complexity
+def find_element(arr, target):
+    for i in range(len(arr)):
+        if arr[i] == target:
+            return i
+    return -1
+
+# Example 3: O(n^2) - Quadratic time complexity
+def bubble_sort(arr):
+    for i in range(len(arr)):
+        for j in range(len(arr) - 1):
+            if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+
+# Example 4: O(log n) - Logarithmic time complexity
+def binary_search(arr, target):
+    low, high = 0, len(arr) - 1
+    while low <= high:
+        mid = (low + high) // 2
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            low = mid + 1
+        else:
+            high = mid - 1
+    return -1
+# Generate random arrays of varying sizes
+sizes = [100, 200, 400, 800, 1600, 3200, 6400]
+times_constant = []
+times_linear = []
+times_quadratic = []
+times_logarithmic = []
+
+for size in sizes:
+    arr = [random.randint(0, 1000) for _ in range(size)]
+
+    # Measure time for constant time complexity
+    start_time = time.time()
+    access_element(arr, size // 2)
+    end_time = time.time()
+    times_constant.append(end_time - start_time)
+
+    # Measure time for linear time complexity
+    start_time = time.time()
+    find_element(arr, arr[size // 2])
+    end_time = time.time()
+    times_linear.append(end_time - start_time)
+
+    # Measure time for quadratic time complexity
+    start_time = time.time()
+    bubble_sort(arr.copy())
+    end_time = time.time()
+    times_quadratic.append(end_time - start_time)
+
+    # Measure time for logarithmic time complexity
+    start_time = time.time()
+    binary_search(sorted(arr), arr[size // 2])
+    end_time = time.time()
+    times_logarithmic.append(end_time - start_time)
+
+# Plot the results
+plt.plot(sizes, times_constant, label='O(1)')
+plt.plot(sizes, times_linear, label='O(n)')
+plt.plot(sizes, times_quadratic, label='O(n^2)')
+plt.plot(sizes, times_logarithmic, label='O(log n)')
+plt.xlabel('Array size')
+plt.ylabel('Time (seconds)')
+plt.title('Time complexity comparison')
+plt.legend()
+plt.show()
+
+
+
