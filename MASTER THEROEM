@@ -1,0 +1,57 @@
+def master_theorem(a, b, f):
+    if f == O(n^log_b(a)):
+        return O(n^log_b(a))
+    elif f == O(n^log_b(a - 1)):
+        return O(n^log_b(a) / log(n))
+    else:
+        return O(n^log_b(a) * log(n)^k)
+
+# Example usage:
+a = 2
+b = 2
+f = lambda n: n  # f(n) = n
+print(master_theorem(a, b, f))  # Output: O(n^2)
+
+
+Substitution Method
+
+def substitution_method(recurrence, initial_conditions):
+    def solve(n):
+        if n in initial_conditions:
+            return initial_conditions[n]
+        else:
+            return recurrence(solve)
+    return solve
+
+# Example usage:
+recurrence = lambda solve: lambda n: 2 * solve(n // 2) + n
+initial_conditions = {0: 0, 1: 1}
+solve = substitution_method(recurrence, initial_conditions)
+print(solve(8))  # Output: 36
+
+
+Iteration Method
+
+def iteration_method(recurrence, initial_conditions, n):
+    result = initial_conditions
+    for i in range(1, n + 1):
+result = recurrence(result)
+    return result
+
+# Example usage:
+recurrence = lambda t: 2 * t + 1
+initial_conditions = 1
+print(iteration_method(recurrence, initial_conditions, 4))  # Output: 17
+
+
+Time Complexity Calculation
+
+def calculate_time_complexity(recurrence, initial_conditions, n):
+    solve = substitution_method(recurrence, initial_conditions)
+    return solve(n)
+
+# Example usage:
+recurrence = lambda solve: lambda n: 2 * solve(n // 2) + n
+initial_conditions = {0: 0, 1: 1}
+print(calculate_time_complexity(recurrence, initial_conditions, 8))  # Output: 36
+
