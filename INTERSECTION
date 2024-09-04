@@ -1,0 +1,29 @@
+def intersection(nums1, nums2):
+    return list(set(nums1) & set(nums2))
+
+# Example usage:
+nums1 = [1, 2, 2, 1]
+nums2 = [2, 2]
+print(intersection(nums1, nums2))  # Output: [2]
+
+nums1 = [4, 9, 5]
+nums2 = [9, 4, 9, 8, 4]
+print(intersection(nums1, nums2))  # Output: [4, 9]
+
+
+This function works by converting the input lists to sets (which automatically removes duplicates) and then using the & operator to find their intersection. The result is converted back to a list before being returned.
+
+Alternatively, you can use a list comprehension with an if condition to achieve the same result:
+
+
+def intersection(nums1, nums2):
+    return [x for x in set(nums1) if x in nums2]
+
+# Example usage:
+nums1 = [1, 2, 2, 1]
+nums2 = [2, 2]
+print(intersection(nums1, nums2))  # Output: [2]
+
+nums1 = [4, 9, 5]
+nums2 = [9, 4, 9, 8, 4]
+print(intersection(nums1, nums2))  # Output: [4, 9]
