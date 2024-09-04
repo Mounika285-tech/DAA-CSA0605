@@ -1,0 +1,50 @@
+def non_recursive_algorithm(n):
+    count = 0
+    for i in range(n):
+        for j in range(n):
+            count += 1
+    return count
+
+# Mathematical analysis:
+# The algorithm has two nested loops, each running 'n' times.
+# The total number of operations is proportional to n^2.
+# Therefore, the time complexity is O(n^2).
+
+n_values = [10, 20, 30, 40, 50]
+times = []
+
+for n in n_values:
+    start_time = time.time()
+    non_recursive_algorithm(n)
+    end_time = time.time()
+    times.append(end_time - start_time)
+
+print("Time complexity: O(n^2)")
+print("n\tTime (seconds)")
+for i in range(len(n_values)):
+    print(f"{n_values[i]}\t{times[i]}")
+def recursive_algorithm(n):
+    if n <= 1:
+        return 1
+    else:
+        return n * recursive_algorithm(n-1)
+
+# Mathematical analysis:
+# The algorithm has a recursive call with a decreasing parameter 'n'.
+# The total number of operations is proportional to n! (factorial).
+# Therefore, the time complexity is O(n!).
+
+n_values = [5, 10, 15, 20, 25]
+times = []
+
+for n in n_values:
+    start_time = time.time()
+    recursive_algorithm(n)
+    end_time = time.time()
+    times.append(end_time - start_time)
+
+print("Time complexity: O(n!)")
+print("n\tTime (seconds)")
+for i in range(len(n_values)):
+    print(f"{n_values[i]}\t{times[i]}")
+
