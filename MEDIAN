@@ -1,0 +1,17 @@
+def median_of_medians(arr):
+    # Base case: If the length of the array is 1 or 2, return the median
+    if len(arr) <= 2:
+        return sorted(arr)[0]
+
+    # Divide the array into groups of 3
+    groups = [arr[i:i+3] for i in range(0, len(arr), 3)]
+
+    # Find the median of each group
+    medians = [sorted(group)[len(group)//2] for group in groups]
+
+    # Recursively find the median of the medians
+    return median_of_medians(medians)
+
+# Test the code
+arr = [3, 5, 2, 8, 1, 4, 6, 7]
+print("Median:", median_of_medians(arr))
