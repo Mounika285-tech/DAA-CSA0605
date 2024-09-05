@@ -1,0 +1,8 @@
+def find_max_min(numbers):
+    return max(numbers), min(numbers)
+
+numbers = [4, 2, 9, 6, 5, 1, 8, 3, 7]
+max_value, min_value = find_max_min(numbers)
+
+print("Maximum value: ", max_value)
+print("Minimum value: ", min_value)
