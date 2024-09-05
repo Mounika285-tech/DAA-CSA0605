@@ -1,0 +1,45 @@
+ef meet_in_middle(points):
+    # Sort the points by their x-coordinates
+    points.sort(key=lambda x: x[0])
+
+    # Divide the points into two halves
+    mid = len(points) // 2
+    left = points[:mid]
+    right = points[mid:]
+
+    # Recursively find the closest pair in each half
+    closest_left = meet_in_middle(left)
+    closest_right = meet_in_middle(right)
+
+    # Find the closest pair that spans the middle
+    closest_middle = find_closest_middle(points, mid)
+
+    # Return the closest pair
+    return min(closest_left, closest_right, closest_middle, key=lambda x: x[2])
+
+def find_closest_middle(points, mid):
+    # Find the points in the middle strip
+    middle_strip = [p for p in points if abs(p[0] - points[mid][0]) < 5]
+
+    # Initialize the closest pair
+    closest_pair = None
+
+    # Iterate over the points in the middle strip
+    for i in range(len(middle_strip)):
+        for j in range(i+1, len(middle_strip)):
+            # Calculate the distance between the points
+            dist = distance(middle_strip[i], middle_strip[j])
+
+            # Update the closest pair if necessary
+            if closest_pair is None or dist < closest_pair[2]:
+                closest_pair = (middle_strip[i], middle_strip[j], dist)
+
+    return closest_pair
+
+def distance(p1, p2):
+    return ((p1[0] - p2[0])**2 + (p1[1] - p2[1])**2)**0.5
+
+# Test the code
+points = [(2, 3), (5, 4), (1, 2), (4, 5), (7, 8), (9, 10)]
+closest_pair = meet_in_middle(points)
+print("Closest pair:", closest_pair)
