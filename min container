@@ -1,0 +1,21 @@
+def min_containers(weights, max_capacity):
+    weights.sort(reverse=True)  # Sort weights in descending order
+    containers = 0
+    current_capacity = 0
+
+    for weight in weights:
+        if current_capacity + weight > max_capacity:
+            containers += 1  # Move to the next container
+            current_capacity = weight  # Start new container with current weight
+        else:
+            current_capacity += weight  # Add weight to current container
+
+    if current_capacity > 0:
+        containers += 1  # Count the last container if it has items
+
+    return containers
+
+# Example usage
+item_weights = [4, 8, 1, 4, 2, 1]
+max_capacity = 10
+print(min_containers(item_weights, max_capacity))  # Output: 3
