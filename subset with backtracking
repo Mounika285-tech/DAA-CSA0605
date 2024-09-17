@@ -1,0 +1,15 @@
+def subsets_with_backtracking(S):
+    S.sort()  # Sort to ensure lexicographical order
+    result = []
+    
+    def backtrack(start, path):
+        result.append(path)
+        for i in range(start, len(S)):
+            backtrack(i + 1, path + [S[i]])
+    
+    backtrack(0, [])
+    return result
+
+# Example usage
+A = [1, 2, 3]
+print(subsets_with_backtracking(A))
