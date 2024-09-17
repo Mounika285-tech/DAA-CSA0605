@@ -1,0 +1,14 @@
+def brute_force_match(haystack: str, needle: str) -> int:
+    if not needle:
+        return 0  # An empty needle is found at index 0
+    haystack_length = len(haystack)
+    needle_length = len(needle)
+
+    for i in range(haystack_length - needle_length + 1):
+        if haystack[i:i + needle_length] == needle:
+            return i  # Return the index of the first occurrence
+    return -1  # Return -1 if needle is not found
+
+# Example usage
+index = brute_force_match("hello", "ll")
+print(index)  # Output: 2
