@@ -1,0 +1,14 @@
+def rob_linear(houses):
+    prev, curr = 0, 0
+    for money in houses:
+        prev, curr = curr, max(prev + money, curr)
+    return curr
+
+def rob_circular(houses):
+    if len(houses) == 1:
+        return houses[0]
+    return max(rob_linear(houses[:-1]), rob_linear(houses[1:]))
+
+# Example usage
+print(rob_circular([2, 3, 2]))  # Output: 3
+print(rob_circular([1, 2, 3, 1]))  # Output: 4
