@@ -1,0 +1,25 @@
+from collections import defaultdict
+
+def count_tuples(A, B, C, D):
+    sum_ab = defaultdict(int)
+    
+    # Calculate all possible sums of A[i] + B[j]
+    for a in A:
+        for b in B:
+            sum_ab[a + b] += 1
+            
+    count = 0
+    
+    # For each sum of C[k] + D[l], check if the negation exists in sum_ab
+    for c in C:
+        for d in D:
+            count += sum_ab[-(c + d)]
+    
+    return count
+
+# Example usage
+A = [1, 2]
+B = [-2, -1]
+C = [-1, 2]
+D = [0, 2]
+print(count_tuples(A, B, C, D))  # Output: 2
