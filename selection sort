@@ -1,0 +1,4 @@
+def selection_sort(arr):
+    if len(arr) == 0:
+        return arr
+    # Sorting logic here...
