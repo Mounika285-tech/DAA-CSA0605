@@ -1,0 +1,10 @@
+def kClosest(points, k):
+    # Calculate the squared distance and sort the points
+    points.sort(key=lambda point: point[0]**2 + point[1]**2)
+    # Return the first k points
+    return points[:k]
+
+# Example usage
+points = [[1, 3], [-2, 2], [5, 8], [0, 1]]
+k = 2
+print(kClosest(points, k))  # Output: [[0, 1], [-2, 2]]
