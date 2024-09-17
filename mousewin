@@ -1,0 +1,22 @@
+def canMouseWin(graph, mouseStart, catStart):
+    from collections import defaultdict
+
+    def dfs(mouse, cat, visited):
+        if mouse == 0:  # Mouse reaches the hole
+            return True
+        if mouse == cat:  # Cat catches the Mouse
+            return False
+        if (mouse, cat) in visited:  # Cycle detected
+            return False
+        
+        visited.add((mouse, cat))
+        for next_mouse in graph[mouse]:
+            if next_mouse == 0 or not dfs(next_mouse, cat, visited):
+                return True
+        for next_cat in graph[cat]:
+            if next_cat != 0 and not dfs(mouse, next_cat, visited):
+                return False
+        visited.remove((mouse, cat))
+        return False
+
+    return 1 if dfs(mouseStart, catStart, set()) else 2
