@@ -1,0 +1,23 @@
+class Node:
+    def __init__(self, char, freq):
+        self.char = char
+        self.freq = freq
+        self.left = None
+        self.right = None
+
+def decode_huffman(root, encoded_str):
+    decoded_message = []
+    current_node = root
+    
+    for bit in encoded_str:
+        current_node = current_node.left if bit == '0' else current_node.right
+        
+        if current_node.left is None and current_node.right is None:  # Leaf node
+            decoded_message.append(current_node.char)
+            current_node = root  # Reset to root for the next character
+            
+    return ''.join(decoded_message)
+
+# Example usage
+# Assuming 'root' is the root of the Huffman tree and 'encoded_str' is the encoded string
+# original_message = decode_huffman(root, encoded_str)
