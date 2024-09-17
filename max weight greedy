@@ -1,0 +1,17 @@
+def max_weight_greedy(weights, capacity):
+    # Sort weights in descending order
+    weights.sort(reverse=True)
+    total_weight = 0
+    
+    for weight in weights:
+        if total_weight + weight <= capacity:
+            total_weight += weight
+        else:
+            break
+            
+    return total_weight
+
+# Example usage
+weights = [10, 20, 30, 40, 50]
+capacity = 100
+print(max_weight_greedy(weights, capacity))  # Output: 100
