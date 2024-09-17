@@ -1,0 +1,24 @@
+def findWays(m, n, N, i, j):
+    dp = [[[0] * n for _ in range(m)] for _ in range(N + 1)]
+    dp[0][i][j] = 1  # Starting position
+
+    for step in range(1, N + 1):
+        for x in range(m):
+            for y in range(n):
+                # Move out of bounds
+                if x == 0: dp[step][x][y] += 1
+                if x == m - 1: dp[step][x][y] += 1
+                if y == 0: dp[step][x][y] += 1
+                if y == n - 1: dp[step][x][y] += 1
+                
+                # Move in four directions
+                if x > 0: dp[step][x][y] += dp[step - 1][x - 1][y]
+                if x < m - 1: dp[step][x][y] += dp[step - 1][x + 1][y]
+                if y > 0: dp[step][x][y] += dp[step - 1][x][y - 1]
+                if y < n - 1: dp[step][x][y] += dp[step - 1][x][y + 1]
+
+    return dp[N][0][0] + dp[N][m - 1][0] + dp[N][0][n - 1] + dp[N][m - 1][n - 1]
+
+# Example usage
+print(findWays(2, 2, 2, 0, 0))  # Output: 6
+print(findWays(1, 3, 3, 0, 1))  # Output: 12
