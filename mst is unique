@@ -1,0 +1,13 @@
+def is_unique_mst(graph):
+    weights = [weight for _, _, weight in graph.edges(data='weight')]
+    return len(weights) == len(set(weights))
+
+# Example usage
+graph = {
+    'edges': [
+        ('A', 'B', 1),
+        ('B', 'C', 1),
+        ('A', 'C', 2)
+    ]
+}
+print(is_unique_mst(graph))  # Output: False
