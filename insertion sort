@@ -1,0 +1,14 @@
+def insertion_sort(data):
+    for i in range(1, len(data)):
+        key = data[i]
+        j = i - 1
+        while j >= 0 and key < data[j]:
+            data[j + 1] = data[j]
+            j -= 1
+        data[j + 1] = key
+    return data
+
+# Example usage
+sensor_data = [23, 18, 30, 25, 20]
+sorted_data = insertion_sort(sensor_data)
+print(sorted_data)  # Output: [18, 20, 23, 25, 30]
