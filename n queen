@@ -1,0 +1,16 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+def plot_n_queens(n, solution):
+    board = np.zeros((n, n))
+    for col, row in enumerate(solution):
+        board[row, col] = 1
+    plt.imshow(board, cmap='binary')
+    plt.xticks(range(n))
+    plt.yticks(range(n))
+    plt.gca().invert_yaxis()
+    plt.show()
+
+# Example solution for N=4
+solution_4 = [1, 3, 0, 2]  # Row positions for each column
+plot_n_queens(4, solution_4)
